@@ -1,0 +1,108 @@
+import { CategoryInfo, NewsCategory } from '../types/news';
+
+export const CATEGORIES: CategoryInfo[] = [
+  {
+    id: 'national',
+    nameHi: 'देश',
+    nameEn: 'National',
+    slug: 'national',
+    iconName: 'Flag',
+    color: 'bg-red-600',
+  },
+  {
+    id: 'politics',
+    nameHi: 'राजनीति',
+    nameEn: 'Politics',
+    slug: 'politics',
+    iconName: 'Landmark',
+    color: 'bg-blue-600',
+  },
+  {
+    id: 'state',
+    nameHi: 'राज्य-शहर',
+    nameEn: 'States',
+    slug: 'states',
+    iconName: 'MapPin',
+    color: 'bg-amber-600',
+  },
+  {
+    id: 'sports',
+    nameHi: 'खेल',
+    nameEn: 'Sports',
+    slug: 'sports',
+    iconName: 'Trophy',
+    color: 'bg-emerald-600',
+  },
+  {
+    id: 'business',
+    nameHi: 'व्यापार',
+    nameEn: 'Business',
+    slug: 'business',
+    iconName: 'TrendingUp',
+    color: 'bg-indigo-600',
+  },
+  {
+    id: 'tech',
+    nameHi: 'तकनीक',
+    nameEn: 'Technology',
+    slug: 'tech',
+    iconName: 'Cpu',
+    color: 'bg-cyan-600',
+  },
+  {
+    id: 'entertainment',
+    nameHi: 'मनोरंजन',
+    nameEn: 'Entertainment',
+    slug: 'entertainment',
+    iconName: 'Film',
+    color: 'bg-pink-600',
+  },
+  {
+    id: 'world',
+    nameHi: 'विदेश',
+    nameEn: 'World',
+    slug: 'world',
+    iconName: 'Globe',
+    color: 'bg-purple-600',
+  },
+  {
+    id: 'health',
+    nameHi: 'सेहत',
+    nameEn: 'Health',
+    slug: 'health',
+    iconName: 'HeartPulse',
+    color: 'bg-teal-600',
+  },
+  {
+    id: 'education',
+    nameHi: 'शिक्षा',
+    nameEn: 'Education',
+    slug: 'education',
+    iconName: 'GraduationCap',
+    color: 'bg-orange-600',
+  },
+];
+
+export const INDIAN_STATES = [
+  'मध्य प्रदेश',
+  'उत्तर प्रदेश',
+  'बिहार',
+  'राजस्थान',
+  'दिल्ली',
+  'महाराष्ट्र',
+  'गुजरात',
+  'हरियाणा',
+  'झारखंड',
+  'छत्तीसगढ़',
+  'पंजाब',
+  'उत्तराखंड',
+];
+
+export const POPULAR_CITIES: Record<string, string[]> = {
+  'मध्य प्रदेश': ['भोपाल', 'इंदौर', 'ग्वालियर', 'जबलपुर', 'उज्जैन'],
+  'उत्तर प्रदेश': ['लखनऊ', 'वाराणसी', 'नोएडा', 'कानपुर', 'प्रयागराज', 'अयोध्या'],
+  'बिहार': ['पटना', 'गया', 'मुजफ्फरपुर', 'भागलपुर'],
+  'राजस्थान': ['जयपुर', 'जोधपुर', 'उदयपुर', 'कोटा'],
+  'दिल्ली': ['नई दिल्ली', 'दक्षिण दिल्ली', 'पूर्वी दिल्ली', 'द्वारका'],
+  'महाराष्ट्र': ['मुंबई', 'पुणे', 'नागपुर', 'नासिक'],
+};

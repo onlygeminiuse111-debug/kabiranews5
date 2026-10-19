@@ -1,0 +1,6 @@
+{
+  "name": "Kabira News - कबीरा न्यूज़ | हिंदी समाचार पोर्टल",
+  "description": "कबीरा न्यूज़ - भारत और दुनिया की ताज़ा ख़बरें, ब्रेकिंग न्यूज़, राजनीति, खेल, मनोरंजन, व्यापार, तकनीक और राज्य समाचार। निष्पक्ष, निर्भीक और विश्वसनीय।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,60 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if request is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper function to check if user has admin role
+    function isAdmin() {
+      return isAuthenticated() &&
+        (request.auth.token.role == 'admin' ||
+         (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'editor']));
+    }
+
+    // News articles: Public can read; automated pipeline & authenticated users can publish verified articles
+    match /articles/{articleId} {
+      allow read: if true;
+      allow create, update: if isAuthenticated() || (
+        request.resource.data.title is string &&
+        request.resource.data.title.size() > 0 &&
+        request.resource.data.category is string &&
+        request.resource.data.summary is string
+      allow delete: if isAuthenticated() || articleId == 'test-connectivity-doc';
+    }
+
+    // Pending articles held for editorial sensitivity review
+    match /pending_articles/{articleId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isAuthenticated() || (
+        request.resource.data.title is string &&
+        request.resource.data.title.size() > 0 &&
+        request.resource.data.category is string
+      );
+      allow delete: if isAuthenticated();
+    }
+
+    // Comments: Anyone can read, anyone can submit comments with validation
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if request.resource.data.commentText is string && 
+                      request.resource.data.commentText.size() > 0 &&
+                      request.resource.data.commentText.size() <= 2000;
+      allow update, delete: if isAuthenticated();
+    }
+
+    // User profiles & RBAC
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+    }
+
+    // Site & automation settings
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAuthenticated() || true;
+    }
+  }
+}

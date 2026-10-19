@@ -1,0 +1,70 @@
+{
+  "entities": {
+    "Article": {
+      "title": "Article",
+      "description": "A news article published or drafted on Kabira News",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Headline in Hindi" },
+        "titleEn": { "type": "string", "description": "Optional English title" },
+        "slug": { "type": "string", "description": "URL slug" },
+        "summary": { "type": "string", "description": "Brief summary in Hindi" },
+        "content": { "type": "string", "description": "Full article body in Hindi" },
+        "category": { "type": "string", "description": "News category slug" },
+        "state": { "type": "string", "description": "State name if applicable" },
+        "city": { "type": "string", "description": "City name if applicable" },
+        "imageUrl": { "type": "string", "description": "Featured article image URL" },
+        "imageCaption": { "type": "string", "description": "Caption for the image" },
+        "publishedAt": { "type": "string", "description": "ISO timestamp of publication" },
+        "status": { "type": "string", "enum": ["published", "draft", "held_for_review"] },
+        "isBreaking": { "type": "boolean" },
+        "isTrending": { "type": "boolean" },
+        "isHeroHighlight": { "type": "boolean" },
+        "views": { "type": "number" },
+        "tags": { "type": "array" },
+        "readingTime": { "type": "number" },
+        "updatedAt": { "type": "string" },
+        "sourceUrl": { "type": "string" },
+        "sourceName": { "type": "string" },
+        "aiProcessed": { "type": "boolean" }
+      },
+      "required": ["title", "slug", "summary", "category", "publishedAt", "status"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "User comments on news articles",
+      "type": "object",
+      "properties": {
+        "articleId": { "type": "string" },
+        "userName": { "type": "string" },
+        "commentText": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["articleId", "userName", "commentText", "createdAt"]
+    },
+    "Setting": {
+      "title": "Setting",
+      "description": "System and automation settings",
+      "type": "object",
+      "properties": {
+        "key": { "type": "string" },
+        "value": { "type": "string" }
+      },
+      "required": ["key"]
+    }
+  },
+  "firestore": {
+    "/articles/{articleId}": {
+      "schema": "Article",
+      "description": "Collection of published and draft news articles"
+    },
+    "/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Comments left on news articles"
+    },
+    "/settings/{settingId}": {
+      "schema": "Setting",
+      "description": "Application settings and operational parameters"
+    }
+  }
+}
